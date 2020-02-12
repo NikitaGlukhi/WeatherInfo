@@ -1,8 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+import * as compression from 'compression';
+import * as path from 'path';
+
+const pathToEnv = path.join(__dirname, '..env');
+require('dotenv').config(pathToEnv);
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  const instance = await NestFactory.create(AppModule);
+  instance.use(compression());
+
+  await instance.listen(8080);
 }
-bootstrap();
+bootstrap()
+  .then(() => {
+    console.log(`Application listening on port ${ process.env.PORT }!`);
+  })
+  .catch(error => {
+    console.error('Application bootstrap error!', error)
+  });
