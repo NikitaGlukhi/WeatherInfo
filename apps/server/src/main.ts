@@ -3,9 +3,10 @@ import { AppModule } from './app.module';
 
 import * as compression from 'compression';
 import * as path from 'path';
+import 'reflect-metadata';
+require('dotenv').config();
 
-const pathToEnv = path.join(__dirname, '..env');
-require('dotenv').config(pathToEnv);
+// const pathToEnv = path.join(__dirname, '..env');
 
 async function bootstrap() {
   const instance = await NestFactory.create(AppModule);
