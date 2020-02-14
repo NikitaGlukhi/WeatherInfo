@@ -5,13 +5,13 @@ module.exports = {
   username: process.env.DB_USER,
   password: process.env.DB_PWD,
   database: process.env.DB_NAME,
-  entities: ['dist/sever/modules/**/*.entity.js'],
+  entities: ['dist/server/modules/**/*.entity.js'],
   migrationsTableName: 'migration_table',
   migrations: ['dist/migration/**/*.js'],
   migrationsRun: false,
-  synchronize: false,
+  synchronize: true,
   logging: true,
   cli: {
-    migrationsRun: 'migration'
+    migrationsDir: 'migration'
   }
 };

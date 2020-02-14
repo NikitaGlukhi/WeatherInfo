@@ -9,7 +9,12 @@
     "client:front:build": "ng build",
     "client:front:build:watch": "ng build --watch",
     "server:build": "rimraf dist/server && tsc -p ./apps/server/tsconfig.json",
-    "server:start": "npm run server:build && node ./dist/server/main.js"
+    "server:start": "npm run server:build && npm run migration:run && node ./dist/server/main.js",
+    "server:start:no-migration": "npm run server:build && node ./dist/server/main.js",
+    "migration:build": "rimraf dist/migration && tsc -p tsconfig.migration.json",
+    "migration:run": "npm run migration:build && ./node_modules/.bin/typeorm migration:run",
+    "migration:revert": "npm run migration:build && ./node_modules/.bin/typeorm migration:revert",
+    "migration:generate": "npm run server:build && ./node_modules/.bin/typeorm migration:generate -n "
   },
   "private": true,
   "dependencies": {
@@ -26,9 +31,14 @@
     "@nestjs/platform-express": "^6.10.14",
     "@nestjs/typeorm": "6.3.1",
     "@types/compression": "1.7.0",
+    "cities": "2.0.0",
     "compression": "1.7.4",
+    "country-list": "2.2.0",
     "dotenv": "8.2.0",
+    "find-nearest-cities": "1.0.0",
+    "geolib": "3.2.1",
     "mysql2": "2.1.0",
+    "node-where": "1.1.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.4",
