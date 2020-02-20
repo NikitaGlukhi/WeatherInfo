@@ -8,7 +8,7 @@ import {
 import { CityEntity } from './city.entity';
 import { WeatherFoundType, WeatherInfoModel } from '../../../shared/models';
 
-@Entity('currentWeatherInfo')
+@Entity('weatherInfo')
 export class WeatherInfoEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -19,7 +19,7 @@ export class WeatherInfoEntity {
   @Column({ type: 'simple-json', nullable: false })
   info: WeatherInfoModel | WeatherInfoModel[];
 
-  @ManyToOne(type => CityEntity, data => data.currentWeatherInfo)
+  @ManyToOne(type => CityEntity, data => data.weatherInfo)
   @JoinColumn()
   city: CityEntity;
 }

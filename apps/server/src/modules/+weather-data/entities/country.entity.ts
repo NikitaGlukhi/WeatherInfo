@@ -6,7 +6,7 @@ export class CountryEntity {
   @PrimaryColumn({ type: 'varchar', length: 2, nullable: false })
   id: string;
 
-  @Column({ type: 'varchar', length: 128, nullable: false })
+  @Column({ type: 'varchar', length: 255, nullable: false })
   name: string;
 
   @OneToMany(type => CityEntity, data => data.country)

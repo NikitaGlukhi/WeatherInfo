@@ -22,7 +22,7 @@ export class CityEntity {
   coords: Coords;
 
   @OneToMany(type => WeatherInfoEntity, data => data.city)
-  currentWeatherInfo: WeatherInfoEntity;
+  weatherInfo: WeatherInfoEntity;
 
   @ManyToOne(type => CountryEntity, data => data.city)
   @JoinColumn()
