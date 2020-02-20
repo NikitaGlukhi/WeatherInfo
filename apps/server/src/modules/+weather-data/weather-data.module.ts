@@ -2,8 +2,8 @@ import { Global, Module, HttpModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { WeatherDataController } from './weather-data.controller';
-import { GetWeatherDataService } from './services/get-weather-data.service';
 import { WEATHER_DATA_ENTITIES } from './entities';
+import { WEATHER_DATA_SERVICES } from './services';
 
 @Global()
 @Module({
@@ -12,7 +12,7 @@ import { WEATHER_DATA_ENTITIES } from './entities';
     TypeOrmModule.forFeature([...WEATHER_DATA_ENTITIES])
   ],
   controllers: [ WeatherDataController ],
-  providers: [ GetWeatherDataService ]
+  providers: [ ...WEATHER_DATA_SERVICES ]
 })
 
 export class WeatherDataModule {  }
